@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+
+Sprawdz Temat
+
+{% endblock %}
+
+{% block content %}
+<br><br>
+<div class="card">
+    <div class="card-header">
+        Temat:
+    </div>
+    <div class="card-text">
+        <h2 class="card-title">{{ topic }}</h2>
+        <p class="card-text">
+        <ul>
+            <li>Data Dodania: {{topic.date_added}}</li><br>
+            <li>Ostatnio Zaktualizowane: {{topic.updated}}</li><br>
+            <li>Szukane zdanie: {{topic.search_string}}</li><br>
+            <li>Opis: {{topic.asset_description}}</li><br>
+        </p>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

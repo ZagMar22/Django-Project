@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+
+Add Topic
+
+{% endblock %}
+
+{% block content %}
+
+<div>
+<h2> Dodajesz Nowy Temat:</h2>
+<br>
+    <form action="" method=POST>
+        {% csrf_token %}
+        {{ form.as_p}}
+
+        <input type="submit" value="Dodaj Temat" class="btn btn-success">
+
+
+
+    </form>
+</div>
+
+{% endblock %}

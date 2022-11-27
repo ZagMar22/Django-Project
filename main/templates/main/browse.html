@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+
+Wyszukaj
+
+{% endblock %}
+
+{% block content %}
+<br><br>
+<div>
+<h2> Lista Tematów:</h2>
+<br>
+<table class ="table table-striped table-hover">
+
+    {% for topic in topic_list %}
+        <tr>
+            <td>
+                <a href="{% url 'browsetopic' topic.id %} ">{{topic}}</a>
+            </td>
+        </tr>
+    {% endfor %}
+
+</table>
+</div>
+
+{% endblock %}

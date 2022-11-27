@@ -1,0 +1,51 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+
+Tabliczka Mnożenia
+
+{% endblock %}
+{% block content %}
+
+
+<script>
+    function myFunction() {
+
+        let X = document.getElementById('wiersze_table').value;
+        let Y = document.getElementById('kolumny_table').value;
+
+        if (X <= 0 || Y<= 0)
+        {
+            document.getElementById('demo').innerHTML = "Nie podałeś wartości, lub podałeś ujemne wartości, popraw to!";
+        }
+        else {
+            document.write('<h1>'+ "Oto twoja tabliczka mnożenia, wybrałes zakres "+ "<span style='color:red'>" +X + "</span>" + " na " + "<span style='color:red'>"+ Y + "</span>"+'</h1>');
+            document.write('<table border= "3">');
+            for(var i=1; i<=X; i++){
+                document.write("<tr>");
+            for(var j=1; j<=Y; j++){
+            document.write("<td>"+ i +" x " + j + " = " + i*j + "</td>");
+                    
+            
+            }
+            j=1;
+            document.write("</tr>");
+            }
+            document.write("</table>");
+        }
+
+    }
+</script>
+<br><br>
+<h1>Tabliczka Mnożenia</h1>
+<h2>Wpisz wartości a następnie wciśnij przycisk, aby pokazać tabliczkę mnożenia</h2>
+<label>Ilość Wierszy:</label><br>
+<input type="number" id="wiersze_table"><br>
+<label>Ilość Kolumn:</label><br>
+<input type="number" id="kolumny_table"><br><br>
+
+<button onclick="myFunction()">Submit</button>
+
+<p id="demo"></p>
+
+{% endblock %}
