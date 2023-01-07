@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib import auth
 from django.utils.timezone import now
 from django.dispatch import receiver
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -31,3 +32,15 @@ class Topic(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Ksiazka(models.Model):
+    imie = models.CharField(max_length=30, unique=True)
+    nazwisko = models.TextField(max_length=30, blank=True, null=True)
+    telefon = models.IntegerField(null=False, blank=False, unique=True)
+    data_dodania = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    updated = models.DateTimeField(auto_now=True, blank=True, null=True)
+    #contributedyby = models.ForeignKey(auth.get_user_model(), on_delete=models.CASCADE, verbose_name="Author")
+
+    def __str__(self):
+        return self.nazwisko

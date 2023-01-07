@@ -2,7 +2,7 @@
 
 {% block title %}
 
-Sprawdz Temat
+Sprawdz Osobe
 
 {% endblock %}
 
@@ -10,16 +10,17 @@ Sprawdz Temat
 <br><br>
 <div class="card">
     <div class="card-header">
-        Temat:
+        Dane:
     </div>
     <div class="card-text">
-        <h2 class="card-title">{{ topic }}</h2>
+        <h2 class="card-title">{{ ksiazka }}</h2>
         <p class="card-text">
         <ul>
-            <li>Data Dodania: {{topic.date_added}}</li><br>
-            <li>Ostatnio Zaktualizowane: {{topic.updated}}</li><br>
-            <li>Szukane zdanie: {{topic.search_string}}</li><br>
-            <li>Opis Produktu: {{topic.asset_description}}</li><br>
+            <li>Imie: {{ksiazka.imie}}</li><br>
+            <li>Nazwisko: {{ksiazka.nazwisko}}</li><br>
+            <li>Telefon: {{ksiazka.telefon}}</li><br>
+            <li>Data Dodania: {{ksiazka.data_dodania}}</li><br>
+            <li>Data Aktualizacji: {{ksiazka.updated}}</li><br>
         </p>
         </ul>
     </div>

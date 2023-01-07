@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from .models import ToDoList, Item, Topic
-from .forms import AddTopic
+from .models import ToDoList, Item, Topic, Ksiazka
+from .forms import AddTopic, AddKsiazka
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -23,7 +23,7 @@ def tabliczka(response):
 
 
 def addtopic(request):
-    form = AddTopic(request.POST or None)
+    form = AddKsiazka(request.POST or None)
     if form.is_valid():
         new_topic = form.save(commit=False)
         #kod do uzytkownika
@@ -37,17 +37,33 @@ def addtopic(request):
     return render(request, "main/addtopic.html", context)
 
 def browse(request):
-    topic_list = Topic.objects.all()
+    ksiazka_list = Ksiazka.objects.all()
     context = {
-        'topic_list': topic_list,
+        'ksiazka_list': ksiazka_list,
     }  
     return render(request, "main/browse.html", context)
 
 
-def browsetopic(request, topic_id):
-    topic = get_object_or_404(Topic, pk=topic_id)
+def update_ksiazka(request, ksiazka_id):
+    ksiazka = Ksiazka.objects.get(pk=ksiazka_id)
+    form = AddKsiazka(request.POST or None, instance=ksiazka)
+    if form.is_valid():
+        update_logiczne = form.save(commit=False)
+        #kod do uzytkownika
+        update_logiczne.save()
+        return redirect("browse")
     context = {
-        'topic': topic,
+        'ksiazka': ksiazka,
+        'form': form,
+    }  
+    return render(request, "main/update_ksiazka.html", context)
+
+
+
+def browsetopic(request, topic_id):
+    ksiazka = get_object_or_404(Ksiazka, pk=topic_id)
+    context = {
+        'ksiazka': ksiazka,
     }  
     return render(request, "main/browsetopic.html", context)
 
