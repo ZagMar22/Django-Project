@@ -35,9 +35,9 @@ class Topic(models.Model):
 
 
 class Ksiazka(models.Model):
-    imie = models.CharField(max_length=30, unique=True)
+    imie = models.CharField(max_length=30, unique=False)
     nazwisko = models.TextField(max_length=30, blank=True, null=True)
-    telefon = models.IntegerField(null=False, blank=False, unique=True)
+    telefon = models.CharField(null=False, blank=False, unique=True, max_length=9)
     data_dodania = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     updated = models.DateTimeField(auto_now=True, blank=True, null=True)
     #contributedyby = models.ForeignKey(auth.get_user_model(), on_delete=models.CASCADE, verbose_name="Author")

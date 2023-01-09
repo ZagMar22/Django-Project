@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import ToDoList, Item, Topic, Ksiazka
 from .forms import AddTopic, AddKsiazka
+from django.contrib.auth import get_user_model
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -36,12 +37,41 @@ def addtopic(request):
 
     return render(request, "main/addtopic.html", context)
 
+
+
+
+def search(request):
+    if request.method =="POST":
+        searched = request.POST['searched']
+        obiekty = Ksiazka.objects.filter(nazwisko__contains=searched)
+        context = {
+            'searched':searched,
+            'obiekty':obiekty,
+    }
+        return render(request, "main/search.html", context)
+    else:
+        context = {
+        }
+        return render(request, "main/search.html", context)
+
 def browse(request):
-    ksiazka_list = Ksiazka.objects.all()
+    ksiazka_list = Ksiazka.objects.all().order_by('data_dodania')
     context = {
         'ksiazka_list': ksiazka_list,
     }  
     return render(request, "main/browse.html", context)
+
+def ranking(request):
+    users = get_user_model().objects.all()
+    context = {
+        'users':users
+    }  
+    return render(request, "main/ranking.html", context)
+
+def delete_ksiazka(request, ksiazka_id):
+    ksiazka = Ksiazka.objects.get(pk=ksiazka_id)
+    ksiazka.delete()
+    return redirect('browse')
 
 
 def update_ksiazka(request, ksiazka_id):

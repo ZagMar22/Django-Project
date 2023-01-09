@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+
+Wyszukiwanie
+
+{% endblock %}
+
+{% block content %}
+<br><br>
+<div>
+
+    {% if searched %}
+        <h1> Wynik Wyszukania: <span style="color:red">{{searched}}</span></h1>
+        <br>
+        <!-- {% for obiekt in obiekty %}
+            {{obiekt}} {{obiekt.imie}}<br>
+        {% endfor %} -->
+        <table class ="table table-striped table-hover">
+            <tr>
+                <th style="text-align:left">Nazisko i Imie</th>
+                <th style="text-align:left">Telefon</th>
+            </tr>
+
+            {% for obiekt in obiekty %}
+                <tr>
+                    <td>
+                        <a href="{% url 'browsetopic' obiekt.id %} ">{{obiekt.nazwisko}} {{obiekt.imie}} </a> 
+                    </td>
+                    <td>
+                        {{obiekt.telefon}}
+                    </td>
+                </tr>
+            {% endfor %}
+        
+        </table>
+
+        {% else %}
+        <h1> Hej! Zapomniales wpisac co chcesz wyszukac</h1>
+    {% endif %}
+
+
+
+
+</div>
+
+{% endblock %}
